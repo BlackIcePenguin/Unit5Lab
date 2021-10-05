@@ -54,13 +54,13 @@ def tree_builder(x, y, tree_change):
 
 
 # Human code, bottom right foot starting x and y
-def waving_person(x, y):
+def waving_person(x, y, time):
     pygame.draw.line(screen, MAGENTA, (x, y), (x+10, y-30), width=4)
     pygame.draw.line(screen, MAGENTA, (x + 20, y), (x + 10, y - 30), width=4)
     pygame.draw.line(screen, MAGENTA, (x + 10, y - 30), (x + 10, y - 60), width=4)
     pygame.draw.circle(screen, MAGENTA, (x + 11, y-60), 10, 0)
     pygame.draw.line(screen, MAGENTA, (x + 10, y - 35), (x + 35, y-70), width=4)
-    pygame.draw.line(screen, MAGENTA, (x + 35, y - 70), (x + 25, y-90), width=4)
+    pygame.draw.line(screen, MAGENTA, (x + 35, y - 70), (x + 25 + time, y-90), width=4)
 
 
 running = True
@@ -108,7 +108,8 @@ while running:
     hoop_x = int(200 + 50*math.cos(theta))
     hoop_y = int(100 + 50*math.sin(theta))
     pygame.draw.circle(screen, RED, (hoop_x, hoop_y), 10, 0)
-    waving_person(300, 400)
+    wave_time = day_night / 45
+    waving_person(300, 400, wave_time)
 
     pygame.display.flip()
 
