@@ -39,6 +39,29 @@ running = True
 
 
 # Setting up the classes
+class Person:
+    def __init__(self, x, y, color):
+        self.x = x
+        self.y = y
+        self.color = color
+
+    def draw_person_on_raft(self):
+        pygame.draw.line(screen, self.color, (self.x + 68, self.y + 10), (self.x + 75, self.y + 35), 2)
+        pygame.draw.line(screen, self.color, (self.x + 68, self.y + 10), (self.x + 61, self.y + 35), 2)
+        pygame.draw.line(screen, self.color, (self.x + 68, self.y + 10), (self.x + 68, self.y - 15), 2)
+        pygame.draw.line(screen, self.color, (self.x + 68, self.y - 10), (self.x + 50, self.y), 2)
+        pygame.draw.circle(screen, self.color, (self.x + 69, self.y - 23), 8, width=0)
+        pygame.draw.line(screen, self.color, (self.x + 68, self.y - 10), (self.x + 82, self.y - 22), 2)
+        pygame.draw.arc(screen, RED, [self.x + 60, self.y - 30, 16, 8], 0, PI, 50)
+        pygame.draw.line(screen, self.color, (self.x + 75, self.y - 30), (self.x + 82, self.y - 22), 2)
+
+    def person_move(self):
+        if self.x > 800:
+            self.x = -100
+        if self.x <= 800:
+            self.x += 1.5
+
+
 class Raft:
     def __init__(self, x, y):
         self.x = x
@@ -104,6 +127,7 @@ class Sky:
         pygame.draw.circle(screen, YELLOW, (0, 0), 89)
 
 
+person = Person(300, 300, WHITE)
 raft = Raft(300, 300)
 ocean = Ocean(500, 250)
 sky = Sky(300, 100)
@@ -122,6 +146,8 @@ while running:
     sky.cloud()
     raft.raft_move()
     raft.raft_draw()
+    person.person_move()
+    person.draw_person_on_raft()
 
     pygame.display.flip()
 
